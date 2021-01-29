@@ -250,7 +250,7 @@ fabric.properties
 .idea/codestream.xml
 
 ### vscode ###
-.vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -258,3 +258,4 @@ fabric.properties
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/flask,vscode,pycharm
+preprocessing/.vscode/settings.json
