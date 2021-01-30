@@ -1,4 +1,4 @@
-# set up
+# setup
 
 `for linux`
 
