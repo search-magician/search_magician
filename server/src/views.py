@@ -9,19 +9,32 @@ import json
 def index():
     return "Hello World!"
 
-@app.route("/er")
-def er():
+
+@app.route("/vidoes/youtube/<videoId>/er")
+def er(videoId):
     nlp = spacy.load("en_core_web_trf")
-    strInput = str(request.data)
+    strInput = getRaw(videoId)
     doc = nlp(strInput)
     ans = ""
     for ent in doc.ents:
-        ans += " <div> " + ent.text + " " + str(ent.start_char) + " " + str(ent.end_char) + " " + ent.label_ + " </div> "
+        ans += (
+            " <div> "
+            + ent.text
+            + " "
+            + str(ent.start_char)
+            + " "
+            + str(ent.end_char)
+            + " "
+            + ent.label_
+            + " </div> "
+        )
     return ans
+
 
 @app.route("/vidoes/youtube/<videoId>")
 def youtube(videoId):
     return getJson(videoId)
+
 
 @app.route("/vidoes/youtube/<videoId>/raw")
 def youtube_raw(videoId):
