@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import requests
 import json
 
+
 def _main(videoId):
     url = "http://video.google.com/timedtext?lang=en&v=" + videoId
     response = requests.request("GET", url)
@@ -15,14 +16,16 @@ def _main(videoId):
         )
     return res
 
+
 def getJson(videoId):
     res = _main(videoId)
     return json.dumps(res, indent=4)
+
 
 def getRaw(videoId):
     res = _main(videoId)
     rawText = ""
     for sen in res:
         rawText += sen["text"] + "\n"
-    
+
     return rawText
