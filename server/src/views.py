@@ -1,8 +1,7 @@
 from src import app
 import spacy
 from flask import request
-from src.youtube.transcript import getRaw, getJson, _main
-import json
+from src.youtube.transcript import getRaw, getJson
 
 
 @app.route("/")
