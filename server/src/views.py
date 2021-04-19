@@ -1,6 +1,7 @@
 from src import app
 from src.youtube.transcript import getRaw, getJson, _main
 from src.topic_classification.main import getTranscript
+from src.youtube.transcript import getRaw, getJson
 import json
 
 
@@ -25,6 +26,6 @@ def topic_classification(videoId):
    topics , topics_prob = getTranscript(transcript)
    json = {
        "topics" : topics,
-       "topics_prob" : topics_prob
+       "topics_prob" : topics_prob.tolist()
    }
    return json

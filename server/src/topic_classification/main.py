@@ -1,5 +1,5 @@
 #https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html?highlight=news%20group#sklearn.datasets.fetch_20newsgroups
-import src.topic_classification.test
+from src.topic_classification.test import testnew
 import src.topic_classification.classification
 from pandas import read_csv
 
@@ -17,7 +17,7 @@ def startTheModule():
         test.testnew(transcript)
 
 def getTranscript(transcript):
-    return test.testnew(transcript)
+    return testnew(transcript)
 
 
 #startTheModule()
