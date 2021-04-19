@@ -19,7 +19,7 @@
 - install the requirements
 
   ```bash
-  pip3 install -r requirements.text
+  pip3 install -r requirements.txt
   ```
 
 - run the server
