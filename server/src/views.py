@@ -1,6 +1,9 @@
+import sys
+# insert at 1, 0 is the script path 
+sys.path.insert(1, '../search_magician/server')
 from src import app
 from src.youtube.transcript import getRaw, getJson, _main
-from src.topic_classification.main import getTranscript
+#from src.topic_classification.main import getTranscript
 from src.youtube.transcript import getRaw, getJson
 import json
 
