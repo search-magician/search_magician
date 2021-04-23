@@ -2,6 +2,7 @@ from src import app
 import spacy
 from flask import request
 from src.youtube.transcript import getRaw, getJson
+import json
 
 
 @app.route("/")
@@ -14,20 +15,20 @@ def er(videoId):
     nlp = spacy.load("en_core_web_trf")
     strInput = getRaw(videoId)
     doc = nlp(strInput)
-    ans = ""
+    ans = []
     for ent in doc.ents:
-        ans += (
-            " <div> "
-            + ent.text
-            + " "
-            + str(ent.start_char)
-            + " "
-            + str(ent.end_char)
-            + " "
-            + ent.label_
-            + " </div> "
+        ans.append(
+            {
+                "text": str(ent.text),
+                "start_char": str(ent.start_char),
+                "end_char": str(ent.end_char),
+                "label": str(ent.label_),
+            }
         )
-    return ans
+    for ent in ans:
+        print(ent)
+
+    return json.dumps(ans)
 
 
 @app.route("/vidoes/youtube/<videoId>")
