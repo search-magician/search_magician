@@ -1,5 +1,5 @@
 from src import app
-from src.youtube.transcript import getRaw, getJson, _main
+from src.youtube.transcript import getRaw, getJson
 import json
 
 
