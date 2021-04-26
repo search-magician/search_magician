@@ -1,6 +1,8 @@
 from src import app
 import spacy
 from flask import request
+from src.youtube.transcript import getRaw, getJson, _main
+from src.topic_classification.main import getTranscript
 from src.youtube.transcript import getRaw, getJson
 import json
 from flask_cors import CORS
@@ -11,7 +13,6 @@ CORS(app)
 @app.route("/")
 def index():
     return "Hello World!"
-
 
 @app.route("/vidoes/youtube/<videoId>/er")
 def er(videoId):
@@ -42,3 +43,14 @@ def youtube(videoId):
 @app.route("/vidoes/youtube/<videoId>/raw")
 def youtube_raw(videoId):
     return getRaw(videoId)
+
+
+@app.route("/vidoes/youtube/<videoId>/classification")
+def topic_classification(videoId):
+   transcript = getRaw(videoId)
+   topics , topics_prob = getTranscript(transcript)
+   json = {
+       "topics" : topics,
+       "topics_prob" : topics_prob.tolist()
+   }
+   return json
