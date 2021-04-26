@@ -3,7 +3,10 @@ import spacy
 from flask import request
 from src.youtube.transcript import getRaw, getJson
 import json
+from flask_cors import CORS
 
+
+CORS(app)
 
 @app.route("/")
 def index():
