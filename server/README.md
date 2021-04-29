@@ -12,8 +12,8 @@
   ( make sure that you have the venv activated when you run the app or install any new modules)
 
   ```bash
-  python3 -m venv venv
-  source venv/bin/activate
+  python3 -m venv .env
+  source .env/bin/activate
   ```
 
 - install the requirements
@@ -31,4 +31,18 @@
   ```bash
   git add very_cool_file_name.py
   pre-commit
+  ```
+- bonus (add this to your ~/.bashrc automatically activate virtualenvs when cd )
+  ```bash
+  function cd() {
+    if [[ -d ./.env ]] ; then
+      deactivate
+    fi
+
+    builtin cd $1
+
+    if [[ -d ./.env ]] ; then
+      . ./.env/bin/activate
+    fi
+  }
   ```
