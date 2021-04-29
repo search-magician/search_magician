@@ -1,12 +1,13 @@
 import spacy
 import json
 
-def main(txt):
+
+def main(txt: str) -> json:
     nlp = spacy.load("en_core_web_trf")
     doc = nlp(txt)
-    ans = []
+    data = []
     for ent in doc.ents:
-        ans.append(
+        data.append(
             {
                 "text": str(ent.text),
                 "start_char": str(ent.start_char),
@@ -14,7 +15,13 @@ def main(txt):
                 "label": str(ent.label_),
             }
         )
-    for ent in ans:
-        print(ent)
+    return data
 
-    return json.dumps(ans)
+
+def getEntitiesList(txt: str) -> list:
+    data = main(txt)
+    entitiesList = []
+    for item in data:
+        entitiesList.append(item["text"])
+
+    return entitiesList
