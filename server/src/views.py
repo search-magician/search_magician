@@ -2,6 +2,7 @@ from src import app
 from src.youtube.transcript import getRaw, getJson, _main
 from src.topic_classification.main import getTranscript
 from src.youtube.transcript import getRaw, getJson
+from src.keywords_extraction.extractor import extractKeyWorks
 import json
 
 
@@ -28,4 +29,10 @@ def topic_classification(videoId):
        "topics" : topics,
        "topics_prob" : topics_prob.tolist()
    }
+   return json
+
+@app.route("/vidoes/youtube/<videoId>/keywords")
+def extract_keywords(videoId):
+   transcript = getRaw(videoId)
+   json = extractKeyWorks(transcript)
    return json
