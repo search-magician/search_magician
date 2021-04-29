@@ -1,11 +1,11 @@
 from apiclient.discovery import build
 import json
 from src.extractors.ER import getEntitiesList
-
-api_key = "AIzaSyDtrJTNrq_Czfa261UXZIoqkLeo5sizg-I"
+import os
 
 
 def getVideoData(id: str) -> json:
+    api_key = os.getenv("YOUTUBE_API_KEY")
     youtube = build("youtube", "v3", developerKey=api_key)
     req = youtube.videos().list(part="snippet", id=id)
     res = req.execute()
@@ -16,6 +16,7 @@ def getVideoData(id: str) -> json:
 
 
 def getListData(id: str) -> json:
+    api_key = os.getenv("YOUTUBE_API_KEY")
     youtube = build("youtube", "v3", developerKey=api_key)
     req = youtube.playlistItems().list(part="snippet", playlistId=id)
     res = req.execute()
