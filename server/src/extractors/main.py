@@ -1,12 +1,12 @@
 from src.extractors.ER import getEntitiesList
-from src.extractors.keywords import extractKeyWorks
+from src.extractors.keywords import extractKeyWords
 from src.youtube.transcript import getRaw
 from src.topic_classification.main import getTranscript as getClasses
 
 def getVideoData(videoId):
     transRaw = getRaw(videoId)
     ER = getEntitiesList(transRaw)
-    keywords = extractKeyWorks(transRaw)
+    keywords = extractKeyWords(transRaw)
     
     classes , classes_prob = getClasses(transRaw)
 

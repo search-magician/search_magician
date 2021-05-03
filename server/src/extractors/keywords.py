@@ -1,6 +1,6 @@
 import yake
 
-def extractKeyWorks(transcript):
+def extractKeyWords(transcript):
     kw_extractor = yake.KeywordExtractor()
     language = "en"
     max_ngram_size = 3

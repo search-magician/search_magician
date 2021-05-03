@@ -1,6 +1,7 @@
 from apiclient.discovery import build
 import json
 from src.extractors.ER import getEntitiesNameList
+from src.extractors.keywords import extractKeyWords
 import os
 
 
@@ -36,7 +37,9 @@ def getTopicsFromList(id: str) -> json:
     listData = getListData(id)
     for item in listData:
         item["ER"] = getEntitiesNameList(item["description"])
-
+        item["ER"].append(getEntitiesNameList(item["title"]))
+        item["keywords"] = extractKeyWords(item["description"])
+        item["keywords"].append(extractKeyWords(item["title"]))
     return listData
 
 
