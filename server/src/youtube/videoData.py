@@ -1,6 +1,6 @@
 from apiclient.discovery import build
 import json
-from src.extractors.ER import getEntitiesList
+from src.extractors.ER import getEntitiesNameList
 import os
 
 
@@ -35,8 +35,7 @@ def getListData(id: str) -> json:
 def getTopicsFromList(id: str) -> json:
     listData = getListData(id)
     for item in listData:
-        # print("item ", item)
-        item["ER"] = getEntitiesList(item["description"])
+        item["ER"] = getEntitiesNameList(item["description"])
 
     return listData
 

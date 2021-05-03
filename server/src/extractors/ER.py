@@ -2,7 +2,7 @@ import spacy
 import json
 
 
-def main(txt: str) -> json:
+def _main(txt: str) -> json:
     nlp = spacy.load("en_core_web_trf")
     doc = nlp(txt)
     data = []
@@ -18,10 +18,26 @@ def main(txt: str) -> json:
     return data
 
 
-def getEntitiesList(txt: str) -> list:
-    data = main(txt)
+def getEntitiesNameList(txt: str) -> list:
+    '''
+        return a list of entities name in the txt
+    '''
+    data = _main(txt)
     entitiesList = []
     for item in data:
         entitiesList.append(item["text"])
+    entitiesList = list(set(entitiesList))
+    return entitiesList
 
+
+def getEntitiesList(txt: str) -> list:
+    '''
+        return a list of entities name and type in the txt
+    '''
+    data = _main(txt)
+    entitiesList = []
+    for item in data:
+        entitiesList.append({"text": item["text"], "type": item["label"]})
+    
+    # entitiesList = list(set(entitiesList))
     return entitiesList
