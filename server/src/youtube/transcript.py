@@ -26,5 +26,6 @@ def getRaw(videoId: str) -> str:
     """
     formatter = TextFormatter()
     transcript = _main(videoId)
-    json_formatted = formatter.format_transcript(transcript)
-    return json_formatted
+    raw = formatter.format_transcript(transcript)
+    raw = re.sub('[^A-Za-z0-9 ]+', ' ', raw)
+    return raw
