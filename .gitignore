@@ -259,3 +259,6 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/flask,vscode,pycharm
 preprocessing/.vscode/settings.json
+
+#SVM
+server/src/topic_classification/svm2.sav

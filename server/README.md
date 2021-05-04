@@ -46,3 +46,4 @@
     fi
   }
   ```
+- Please retrain the model from main then selecting 1 (As the model size is larger than 100 MB)
