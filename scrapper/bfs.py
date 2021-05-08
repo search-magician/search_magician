@@ -1,4 +1,3 @@
-import scrapper
 from graph import Graph
 import htmlScrapper
 
