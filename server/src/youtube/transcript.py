@@ -1,7 +1,7 @@
 import youtube_transcript_api
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.formatters import JSONFormatter, TextFormatter
-
+import re
 
 def _main(videoId: str) -> str:
     transcript = YouTubeTranscriptApi.get_transcript(videoId)

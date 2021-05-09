@@ -3,7 +3,8 @@ from src import app
 from flask import request
 from flask_cors import CORS
 from src.extractors.main import getVideoData
-
+from src.elastic.Elastic import index as videoIndex
+from src.Video import Video
 CORS(app)
 
 
@@ -11,8 +12,15 @@ CORS(app)
 def index():
     return "Hello World!"
 
-@app.route("/vidoes/<videoId>")
+@app.route("/videos/<videoId>", methods=["GET"])
 def videoData(videoId):
-    data = getVideoData(videoId)
-    return json.dumps(data, indent=4)
+    vid = Video(videoId)
+    return vid.getVideoFroElastic()
 
+
+@app.route("/videos/<videoId>", methods=["POST"])
+def addNewVideo(videoId):
+    vid = Video(videoId)
+    vidJson = vid.getVideoFroElastic()
+    return videoIndex(videoId, vidJson)
+    
