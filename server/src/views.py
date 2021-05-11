@@ -5,6 +5,7 @@ from flask_cors import CORS
 from src.extractors.main import getVideoData
 from src.elastic.Elastic import index as videoIndex
 from src.Video import Video
+from src.youtube.videoData import getListData
 CORS(app)
 
 
@@ -24,3 +25,14 @@ def addNewVideo(videoId):
     vidJson = vid.getVideoFroElastic()
     return videoIndex(videoId, vidJson)
     
+    
+@app.route("/playlists/<playlistId>", methods=["POST"])
+def addNewPlayList(playlistId):
+    listData = getListData(playlistId)
+    idList = []
+    for item in listData:
+        vid = Video(item["id"])
+        idList.append(vid)
+        vidJson = vid.getVideoFroElastic()
+        videoIndex(item["id"], vidJson)
+    return idList

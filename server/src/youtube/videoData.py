@@ -19,7 +19,7 @@ def getVideoData(id: str) -> json:
 def getListData(id: str) -> json:
     api_key = os.getenv("YOUTUBE_API_KEY")
     youtube = build("youtube", "v3", developerKey=api_key)
-    req = youtube.playlistItems().list(part="snippet", playlistId=id)
+    req = youtube.playlistItems().list(part="snippet,id", playlistId=id)
     res = req.execute()
     ret = []
     for item in res["items"]:
@@ -27,6 +27,7 @@ def getListData(id: str) -> json:
             {
                 "title": item["snippet"]["title"],
                 "description": item["snippet"]["description"],
+                "id": item["snippet"]["resourceId"]["videoId"]
             }
         )
 
