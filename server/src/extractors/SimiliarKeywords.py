@@ -1,9 +1,5 @@
 import nltk
 from nltk.corpus import wordnet
-import spacy
-import numpy as np
-from numba import jit
-nlp = spacy.load('en_core_web_lg')
 
 nltk.download('wordnet')
 def getSynonyms(words):

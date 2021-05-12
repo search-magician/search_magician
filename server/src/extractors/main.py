@@ -2,7 +2,7 @@ from src.extractors.ER import getEntitiesList
 from src.extractors.keywords import extractKeyWords
 from src.youtube.transcript import getRaw
 from src.topic_classification.main import getTranscript as getClasses
-from src.extractors.SimiliarKeywords import getSynonyms,most_similar
+from src.extractors.SimiliarKeywords import getSynonyms
 
 def getVideoData(videoId):
     transRaw = getRaw(videoId)
