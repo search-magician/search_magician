@@ -1,18 +1,18 @@
-from src import app
-from src.youtube.transcript import getRaw, getJson
 import json
+from src import app
+from flask import request
+from flask_cors import CORS
+from src.extractors.main import getVideoData
+
+CORS(app)
 
 
 @app.route("/")
 def index():
     return "Hello World!"
 
+@app.route("/vidoes/<videoId>")
+def videoData(videoId):
+    data = getVideoData(videoId)
+    return json.dumps(data, indent=4)
 
-@app.route("/vidoes/youtube/<videoId>")
-def youtube(videoId):
-    return getJson(videoId)
-
-
-@app.route("/vidoes/youtube/<videoId>/raw")
-def youtube_raw(videoId):
-    return getRaw(videoId)

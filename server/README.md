@@ -12,6 +12,7 @@
   ( make sure that you have the venv activated when you run the app or install any new modules)
 
   ```bash
+  cd ./server
   python3 -m venv .env
   source .env/bin/activate
   ```
@@ -19,12 +20,11 @@
 - install the requirements
 
   ```bash
-  pip3 install -r requirements.text
+  pip3 install -r requirements.txt
   ```
 
 - run the server
   ```bash
-  cd ./server
   FLASK_APP=src FLASK_ENV=development flask run
   ```
 - before you commit stage your changes and run pre-commit to ensure everything is OK :)
