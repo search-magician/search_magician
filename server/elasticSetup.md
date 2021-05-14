@@ -23,3 +23,14 @@
     # the settings shipped with ES 5 were: -Xms2g
     # the settings shipped with ES 5 were: -Xmx2g
 ```
+- setup the elastic mapping
+``` bash
+    python3 elasticSetup.py
+
+    # add testing data ( you should run the flask server first )
+    curl --location --request POST 'http://localhost:5000/playlists/PL96C35uN7xGLafls3cRlsSGGjjXiiqHTU' \
+--data-raw ''
+
+    # test the search 
+    curl --location --request GET 'http://localhost:5000/search?q=games'    
+```

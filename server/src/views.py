@@ -34,7 +34,7 @@ def addNewPlayList(playlistId):
     idList = []
     for item in listData:
         vid = Video(item["id"])
-        idList.append(vid)
+        idList.append(item["id"])
         vidJson = vid.getVideoForElastic()
         videoIndex(item["id"], vidJson)
     return json.dumps(idList)
