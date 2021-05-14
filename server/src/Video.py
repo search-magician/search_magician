@@ -60,7 +60,7 @@ class Video:
         self.classes , _ = getClasses(self.getTranscript())
         return self.classes
 
-    def getVideoFroElastic(self):
+    def getVideoForElastic(self):
         return {"transcript": self.getTranscript(),
             "tags": self.getTags(),
             "classes": self.getClasses()

@@ -24,3 +24,11 @@ def getVideoData(videoId):
             "tags": tags,
             "classes": classes
             }
+
+
+# query
+# {
+#     "transcript": query.txt,
+#     "tags": query.tags,
+#     "classes": query.classes
+# }
