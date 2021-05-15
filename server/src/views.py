@@ -45,9 +45,11 @@ def search():
     query = request.args.get('q') 
     q = Query(query)
     data = q.getQueryForElastic()
-    print(data)
     ret = videoSearch(data)
-    return ret
+    idList = []
+    for i in ret["hits"]["hits"]:
+        idList.append({"id":i["_id"], "score":i["_score"]})
+    return json.dumps(idList)
 
 @app.route("/test")
 def tt():
