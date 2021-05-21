@@ -28,3 +28,17 @@ def filteredSearch(str):
     print(word_tokens)
     print(filtered_sentence)
     return filtered_sentence
+
+def getSimilarityScore(raw_documents, words):
+    gen_docs = [[w.lower() for w in word_tokenize(text)]
+            for text in raw_documents]
+    dictionary = gensim.corpora.Dictionary(gen_docs)
+    corpus = [dictionary.doc2bow(gen_doc) for gen_doc in gen_docs]
+    tf_idf = gensim.models.TfidfModel(corpus)
+    sims = gensim.similarities.Similarity(None,tf_idf[corpus],
+                                      num_features=len(dictionary))
+
+    query_doc_bow = dictionary.doc2bow(words)
+    query_doc_tf_idf = tf_idf[query_doc_bow]
+
+    return sims[query_doc_tf_idf]
