@@ -42,3 +42,31 @@ def getSimilarityScore(raw_documents, words):
     query_doc_tf_idf = tf_idf[query_doc_bow]
 
     return sims[query_doc_tf_idf]
+
+def chooseBestWindow(sentences):
+    sz = len(sentences)
+    l = -1
+    r = -1
+    maxProbability = 0
+
+    for k in range(max(int(0.05 * sz), 10), int(sz * 0.95)):
+        print(k)
+        Probability = 0
+        for i in range(sz - 1 - k):
+            if(i <= k):
+                Probability += sentences[i]
+            else:
+                Probability += sentences[i]
+                Probability -= sentences[i - k]
+                if(Probability  >= maxProbability * k):
+                    maxProbability = Probability / k
+                    l = i - k
+                    r = i
+    return maxProbability, l , r
+
+def fromMstoMinutes(milliseconds):
+    Min = int(milliseconds / 60)
+    sec = milliseconds % 60
+    print(Min, ":", sec)
+    return Min, sec
+
