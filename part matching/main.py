@@ -70,3 +70,19 @@ def fromMstoMinutes(milliseconds):
     print(Min, ":", sec)
     return Min, sec
 
+
+
+print("What is your search")
+search = input()
+search = filteredSearch(search)
+
+words_lower = [w.lower() for w in search]
+t = getSimilarityScore(Sentences,words_lower)
+c = 0
+heatMap(t)
+p, l, r = chooseBestWindow(t)
+print(p, l, r)
+print(Sentences[l])
+print(Sentences[r])
+fromMstoMinutes(time[l])
+fromMstoMinutes(time[r])
