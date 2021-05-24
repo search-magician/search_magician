@@ -2,18 +2,9 @@ import gensim
 from nltk import probability
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from heatmap import heatMap
+from src.part_matching.heatmap import heatMap
 import requests
 
-print("Enter Video ID:")
-Video_ID = input()
-response = requests.get('http://127.0.0.1:5000/vidoes/youtube/' + Video_ID)
-data = response.json()
-Sentences= []
-time = []
-for x in data:
-    Sentences.append(x['text'])
-    time.append(x['start'])
 
 
 def filteredSearch(str):
@@ -25,8 +16,8 @@ def filteredSearch(str):
     for w in word_tokens:
         if w not in stop_words:
             filtered_sentence.append(w)
-    print(word_tokens)
-    print(filtered_sentence)
+    # print(word_tokens)
+    # print(filtered_sentence)
     return filtered_sentence
 
 def getSimilarityScore(raw_documents, words):
@@ -50,7 +41,7 @@ def chooseBestWindow(sentences):
     maxProbability = 0
 
     for k in range(max(int(0.05 * sz), 10), int(sz * 0.95)):
-        print(k)
+        # print(k)
         Probability = 0
         for i in range(sz - 1 - k):
             if(i <= k):
@@ -66,23 +57,30 @@ def chooseBestWindow(sentences):
 
 def fromMstoMinutes(milliseconds):
     Min = int(milliseconds / 60)
-    sec = milliseconds % 60
-    print(Min, ":", sec)
-    return Min, sec
+    sec = int(milliseconds % 60)
+    # print(Min, ":", sec)
+    return str(Min) + ":" + str(sec)
 
+def suggestInterval(Video_ID, search):
+    response = requests.get('http://127.0.0.1:5000/vidoes/youtube/' + Video_ID)
+    data = response.json()
+    Sentences = []
+    time = []
+    for x in data:
+        Sentences.append(x['text'])
+        time.append(x['start'])
+    search = filteredSearch(search)
+    words_lower = [w.lower() for w in search]
+    t = getSimilarityScore(Sentences,words_lower)
+    c = 0
+    #heatMap(t)
+    p, l, r = chooseBestWindow(t)
+    ret = {}
 
+    # print(p, l, r)
+    # print(Sentences[l])
+    # print(Sentences[r])
+    ret["End"] = fromMstoMinutes(time[r])
+    ret["Start"] = fromMstoMinutes(time[l])
 
-print("What is your search")
-search = input()
-search = filteredSearch(search)
-
-words_lower = [w.lower() for w in search]
-t = getSimilarityScore(Sentences,words_lower)
-c = 0
-heatMap(t)
-p, l, r = chooseBestWindow(t)
-print(p, l, r)
-print(Sentences[l])
-print(Sentences[r])
-fromMstoMinutes(time[l])
-fromMstoMinutes(time[r])
+    return ret
