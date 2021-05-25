@@ -14,7 +14,6 @@ def test():
 
 def createVideoIndex():
     mapping = {
-        "_source": False,
          "settings": {
             "analysis": {
             "normalizer": {

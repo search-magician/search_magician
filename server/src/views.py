@@ -7,11 +7,10 @@ from src.elastic.Elastic import index as videoIndex, search as videoSearch, test
 from src.Video import Video
 from src.youtube.videoData import getListData
 from src.Query import Query
-import requests
 from src.part_matching.main import suggestInterval
+from src.youtube.transcript import getJson, getRaw
 CORS(app)
 
-CORS(app)
 
 @app.route("/")
 def index():
@@ -56,6 +55,10 @@ def search():
 @app.route("/vidoes/youtube/<videoId>/raw")
 def youtube_raw(videoId):
     return getRaw(videoId)
+
+@app.route("/vidoes/youtube/<videoId>")
+def youtube_json(videoId):
+    return getJson(videoId)
 
 @app.route('/search/interval-suggestion/<videoId>', methods=['POST'])
 def suggestIntervalEndpoint(videoId):

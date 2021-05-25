@@ -5,6 +5,7 @@ from nltk.tokenize import word_tokenize
 from src.part_matching.heatmap import heatMap
 import requests
 import nltk
+from src.youtube.transcript import getJson
 nltk.download('stopwords')
 nltk.download('punkt')
 
