@@ -45,6 +45,7 @@ class Query:
 
     def getQueryForElastic(self):
         return ({
+        "_source": False,
             "query": {
                 "bool":{
                     "should":[
