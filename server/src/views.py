@@ -2,9 +2,10 @@ from src import app
 from src.youtube.transcript import getRaw, getJson
 from src.part_matching.main import suggestInterval
 from flask import Flask, request, jsonify
-
+from flask_cors import CORS
 import json
 
+CORS(app)
 
 @app.route("/")
 def index():

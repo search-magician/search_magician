@@ -4,8 +4,9 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from src.part_matching.heatmap import heatMap
 import requests
-
-
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
 
 def filteredSearch(str):
 
