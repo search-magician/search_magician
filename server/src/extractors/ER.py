@@ -4,6 +4,7 @@ import json
 
 def _main(txt: str) -> json:
     nlp = spacy.load("en_core_web_trf")
+    print("txt  "+txt)
     doc = nlp(txt)
     data = []
     for ent in doc.ents:

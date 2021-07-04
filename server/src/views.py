@@ -1,6 +1,6 @@
 import json
 from src import app
-from flask import request, jsonify
+from flask import request, jsonify, Flask
 from flask_cors import CORS
 from src.extractors.main import getVideoData
 from src.elastic.Elastic import index as videoIndex, search as videoSearch, test as elasticTest
@@ -9,6 +9,8 @@ from src.youtube.videoData import getListData
 from src.Query import Query
 from src.part_matching.main import suggestInterval
 from src.youtube.transcript import getJson, getRaw
+
+# app = Flask(__name__)
 CORS(app)
 
 
@@ -60,8 +62,9 @@ def youtube_raw(videoId):
 def youtube_json(videoId):
     return getJson(videoId)
 
-@app.route('/search/interval-suggestion/<videoId>', methods=['POST'])
-def suggestIntervalEndpoint(videoId):
-    query = (request.json)["query"]
+@app.route("/search2", methods=['GET'])
+def suggestIntervalEndpoint():
+    query = request.args.get('q') 
+    videoId = request.args.get('id')
     ret = suggestInterval(videoId, query)
     return jsonify(ret)

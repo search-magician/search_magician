@@ -13,7 +13,7 @@ cymem==2.0.5
 decorator==4.4.2
 distlib==0.3.1
 elasticsearch==7.12.1
-en-core-web-trf==3.0.0
+en-core-web-trf @ https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.0.0/en_core_web_trf-3.0.0-py3-none-any.whl
 filelock==3.0.12
 Flask==1.1.2
 Flask-Cors==3.0.10
@@ -24,6 +24,7 @@ google-auth==1.30.0
 google-auth-httplib2==0.1.0
 googleapis-common-protos==1.53.0
 httplib2==0.19.1
+huggingface-hub==0.0.8
 identify==2.2.3
 idna==2.10
 iniconfig==1.1.1
@@ -45,6 +46,7 @@ pandas==1.2.4
 pathspec==0.8.1
 pathy==0.5.2
 Pillow==8.2.0
+pkg-resources==0.0.0
 pluggy==0.13.1
 pre-commit==2.12.1
 preshed==3.0.5

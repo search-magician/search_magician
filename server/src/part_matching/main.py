@@ -1,3 +1,4 @@
+import json
 import gensim
 from nltk import probability
 from nltk.corpus import stopwords
@@ -64,8 +65,8 @@ def fromMstoMinutes(milliseconds):
     return str(Min) + ":" + str(sec)
 
 def suggestInterval(Video_ID, search):
-    response = requests.get('http://127.0.0.1:5000/vidoes/youtube/' + Video_ID)
-    data = response.json()
+    # response = requests.get('http://localhost:5000/vidoes/youtube/' + Video_ID)
+    data = json.loads(getJson(Video_ID))
     Sentences = []
     time = []
     for x in data:
