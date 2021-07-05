@@ -131,13 +131,13 @@ python -m pip install elasticsearch
 python -m pip install elasticsearch[async]
 ```
 - Install the elasticsearch service with msi 
-[]Download the .msi package for Elasticsearch v7.13.2 from https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.13.2.msi
-[]Double-click the downloaded .msi package to launch a GUI wizard that will guide you through the installation process. You can view help on any step by clicking the ? button, which reveals an aside panel with additional information for each input.
-[]Within the first screen, select the directory for the installation. In addition, select directories for where data, use the default locations.
-[]Then select to install as a service 
-[]Set the max memory to 4 GB
-[]Select trial license 
-[]Click install
+1- Download the .msi package for Elasticsearch v7.13.2 from https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.13.2.msi
+2- Double-click the downloaded .msi package to launch a GUI wizard that will guide you through the installation process. You can view help on any step by clicking the ? button, which reveals an aside panel with additional information for each input.
+3- Within the first screen, select the directory for the installation. In addition, select directories for where data, use the default locations.
+4- Then select to install as a service 
+5- Set the max memory to 4 GB
+6- Select trial license 
+7- Click install
 
 
 - setup the elastic mapping
