@@ -1,4 +1,4 @@
-# setup
+# Linux Setup
 
 `for linux`
 
@@ -92,4 +92,73 @@ function cd() {
     . ./.env/bin/activate
   fi
 }
+```
+
+
+# Windows Setup
+
+`for windows`
+
+## flask server
+
+- clone the repo
+
+```bash
+git clone https://github.com/search-magician/search_magician.git
+```
+
+- set up venv
+( make sure that you have the venv activated when you run the app or install any new modules)
+
+```bash
+cd ./server
+python3 -m venv .env
+source .env/bin/activate
+```
+
+- install the requirements
+
+```Terminal
+pip3 install -r requirements.txt
+pip install -U pip setuptools wheel
+pip install -U spacy
+python -m spacy download en_core_web_trf
+```
+
+- Install the elasticsearch package with pip inside the virtual environment
+```Terminal
+python -m pip install elasticsearch
+python -m pip install elasticsearch[async]
+```
+- Install the elasticsearch service with msi 
+Download the .msi package for Elasticsearch v7.13.2 from https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.13.2.msi
+Double-click the downloaded .msi package to launch a GUI wizard that will guide you through the installation process. You can view help on any step by clicking the ? button, which reveals an aside panel with additional information for each input.
+Within the first screen, select the directory for the installation. In addition, select directories for where data, use the default locations.
+Then select to install as a service 
+Set the max memory to 4 GB
+Select trial license 
+Click install
+
+
+- setup the elastic mapping
+``` Terminal
+python3 elasticSetup.py
+
+# add testing data ( you should run the flask server first )
+curl --location --request POST 'http://localhost:5000/playlists/PL96C35uN7xGLafls3cRlsSGGjjXiiqHTU' \
+--data-raw ''
+
+# test the search 
+curl --location --request GET 'http://localhost:5000/search?q=games'    
+```
+
+- run elasticsearch service
+
+``` CMD 
+sc.exe start Elasticsearch
+```
+
+- Run the server
+```bash
+FLASK_APP=src FLASK_ENV=development YOUTUBE_API_KEY = "AIzaSyDtrJTNrq_Czfa261UXZIoqkLeo5sizg-I" flask run
 ```
