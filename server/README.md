@@ -130,7 +130,7 @@ python -m spacy download en_core_web_trf
 python -m pip install elasticsearch
 python -m pip install elasticsearch[async]
 ```
-- Install the elasticsearch service with msi 
+- Install the elasticsearch service with msi <br/>
 1- Download the .msi package for Elasticsearch v7.13.2 from https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.13.2.msi <br/>
 2- Double-click the downloaded .msi package to launch a GUI wizard that will guide you through the installation process. You can view help on any step by clicking the ? button, which reveals an aside panel with additional information for each input.<br/>
 3- Within the first screen, select the directory for the installation. In addition, select directories for where data, use the default locations.<br/>
